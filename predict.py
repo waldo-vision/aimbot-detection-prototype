@@ -37,14 +37,14 @@ if delDir:
 
 # Run auto clip to get clips in folder
 print(f'python auto_clip.py \'{inFile}\' \'{dir}\' 1')
-subprocess.run(['python', './auto_clip.py', inFile, dir, '1'])
+subprocess.run(['python', './auto_clip.py', inFile, dir, '1'], shell=True)
 
 # process clips from auto_clip with cnn to extract features
 print('\n\n\n\n\nNow extracting features')
-subprocess.run(['python', 'save_cnn_output.py', dir, dir])
+subprocess.run(['python', 'save_cnn_output.py', dir, dir], shell=True)
 
 # run extracted features through rnn to classify
 print('\n\n\n\n\nNow Predicting value of cheats')
-subprocess.run(['python', 'test_rnn.py', os.path.join(dir, 'clips.pt'), dir])
+subprocess.run(['python', 'test_rnn.py', os.path.join(dir, 'clips.pt'), dir], shell=True)
 
 

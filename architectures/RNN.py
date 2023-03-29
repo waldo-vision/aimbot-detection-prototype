@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-import torch_directml
 
 # Defining LSTM RNN
 class RNN(nn.Module):
@@ -12,9 +11,7 @@ class RNN(nn.Module):
         self.lstm = nn.LSTM(input_size, hidden_size, num_layers, batch_first=True)  # creating LSTM layer
         self.fc = nn.Linear(hidden_size, num_classes)                               # creating linear output layer
 
-        self.device = torch_directml.device(torch_directml.default_device())
-
-
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         # x -> (batch_size, seq_size, input_size)
 
     def forward(self, x):
